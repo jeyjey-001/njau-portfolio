@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Njau njenga Portfolio</title>
+  <!-- Google Fonts & simple reset -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #faf9fc;
+      color: #1a1a2c;
+      line-height: 1.4;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* modern glassmorphism elements */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(10px);
+      border-radius: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    /* header & nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      padding: 1rem 0;
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #2d2b3c;
+      transition: 0.2s ease;
+      font-size: 1rem;
+    }
+
+    .nav-links a:hover {
+      color: #8b5cf6;
+    }
+
+    /* buttons */
+    .btn {
+      display: inline-block;
+      background: #1e1b2e;
+      color: white;
+      padding: 0.7rem 1.6rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.25s;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #1e1b2e;
+      color: #1e1b2e;
+    }
+
+    .btn-outline:hover {
+      background: #1e1b2e;
+      color: white;
+    }
+
+    .btn-primary {
+      background: linear-gradient(95deg, #4f46e5, #7c3aed);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(79, 70, 229, 0.3);
+    }
+
+    /* hero section */
+    .hero {
+      padding: 5rem 0 4rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .hero-content {
+      flex: 1.2;
+    }
+
+    .hero-badge {
+      background: #ede9fe;
+      color: #5b21b6;
+      display: inline-block;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      background: linear-gradient(145deg, #111827, #4f46e5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .highlight {
+      background: linear-gradient(120deg, #c084fc, #818cf8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      color: #4a4a5e;
+      max-width: 550px;
+      margin: 1rem 0 2rem;
+      line-height: 1.5;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .stat h3 {
+      font-size: 1.8rem;
+      font-weight: 800;
+    }
+
+    .hero-image {
+      flex: 0.9;
+      display: flex;
+      justify-content: center;
+    }
+
+    .avatar-frame {
+      width: 300px;
+      height: 300px;
+      background: linear-gradient(145deg, #a78bfa, #c4b5fd);
+      border-radius: 40% 60% 70% 30% / 40% 45% 55% 60%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.2);
+    }
+
+    .avatar-frame i {
+      font-size: 9rem;
+      color: white;
+      filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.2));
+    }
+
+    /* section titles */
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      letter-spacing: -0.01em;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60%;
+      height: 4px;
+      background: linear-gradient(90deg, #8b5cf6, #c084fc);
+      border-radius: 4px;
+    }
+
+    /* projects grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0 3rem;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 1.8rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
+      border: 1px solid #f0eef5;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 40px -12px rgba(79, 70, 229, 0.2);
+      border-color: #e0d9ff;
+    }
+
+    .project-img {
+      height: 200px;
+      background: linear-gradient(125deg, #f0f4ff, #e9eaff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: #4f46e5;
+    }
+
+    .project-info {
+      padding: 1.5rem;
+    }
+
+    .project-info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 0.8rem 0 1rem;
+    }
+
+    .tag {
+      background: #f3f0ff;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #5b21b6;
+    }
+
+    .project-link {
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #4f46e5;
+      margin-top: 1rem;
+    }
+
+    /* skills marquee / modern list */
+    .skills-section {
+      background: #ffffffd9;
+      border-radius: 2rem;
+      padding: 2rem 2rem;
+      margin: 2rem 0 3rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
+      border: 1px solid #f0eef5;
+    }
+
+    .skills-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .skill-badge {
+      background: #f5f3ff;
+      padding: 0.7rem 1.4rem;
+      border-radius: 60px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1rem;
+      transition: all 0.2s;
+      border: 1px solid #e2defc;
+    }
+    .skill-badge i {
+      font-size: 1.2rem;
+      color: #6d28d9;
+    }
+
+    /* about section */
+    .about-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      background: white;
+      border-radius: 2rem;
+      padding: 2.2rem;
+      margin: 2rem 0;
+      align-items: center;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.03);
+    }
+    .about-text {
+      flex: 2;
+    }
+    .about-text p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      color: #2c2c3a;
+    }
+    .about-highlight {
+      font-weight: 700;
+      color: #6c47ff;
+    }
+
+    /* contact form */
+    .contact-card {
+      background: white;
+      border-radius: 2rem;
+      padding: 2rem;
+      margin: 2rem 0 4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.04);
+    }
+    .contact-info {
+      flex: 1;
+    }
+    .contact-info i {
+      font-size: 1.4rem;
+      width: 2rem;
+      color: #6c47ff;
+    }
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .contact-form {
+      flex: 1.5;
+    }
+    .input-group {
+      margin-bottom: 1.2rem;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border-radius: 1.5rem;
+      border: 1px solid #e2e2ec;
+      font-family: 'Inter', sans-serif;
+      background: #fefefe;
+      transition: 0.2s;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #8b5cf6;
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+    }
+    button[type="submit"] {
+      border: none;
+      width: 100%;
+      padding: 0.9rem;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #e9e9f0;
+      color: #5b5b73;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      .nav-links {
+        gap: 1.2rem;
+      }
+      .container {
+        padding: 0 1.2rem;
+      }
+      .section-title:after {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+      }
+      .section-title {
+        text-align: center;
+        display: block;
+      }
+    }
+
+    /* inserted top-left image styling */
+    .top-left-image {
+      position: fixed;
+      top: 18px;
+      left: 18px;
+      width: 85px;
+      height: 85px;
+      border-radius: 22px;
+      object-fit: cover;
+      z-index: 9999;
+      background: white;
+      padding: 4px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      border: 2px solid rgba(255, 255, 255, 0.85);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .top-left-image:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 18px 40px rgba(79, 70, 229, 0.22);
+    }
+
+    @media (max-width: 768px) {
+      .top-left-image {
+        width: 68px;
+        height: 68px;
+        top: 14px;
+        left: 14px;
+        border-radius: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <img src="profile.png" alt="Profile illustration" class="top-left-image">
+
+<header>
+  <div class="container nav-bar">
+    <div class="logo">Njau Njenga</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-primary" style="padding: 0.6rem 1.4rem;">Let's talk</a>
+  </div>
+</header>
+
+<main>
+  <!-- Hero Section -->
+  <section id="home">
+    <div class="container hero">
+      <div class="hero-content">
+        <span class="hero-badge"><i class="fas fa-code"></i>  Web Developer & ICT Student</span>
+        <h1>Building Modern <span class="highlight">Web Experiences</span> That Stand Out</h1>
+    <p>I’m Njau Njenga — a creative web developer and ICT student focused on creating modern, responsive, and user-friendly websites.</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="#work" class="btn btn-primary">View Projects →</a>
+          <a href="#contact" class="btn btn-outline">Get in touch</a>
+        </div>
+        <div class="hero-stats">
+  <div class="stat"><h3>3+</h3><span>Web Projects</span></div>
+  <div class="stat"><h3>8+</h3><span>Tech Skills</span></div>
+  <div class="stat"><h3>100%</h3><span>Passion to Learn</span></div>
+</div>
+      </div>
+      <div class="hero-image">
+        <div class="avatar-frame">
+          <i class="fas fa-laptop-code"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects Section -->
+  <section id="work">
+    <div class="container">
+      <h2 class="section-title">Featured projects</h2>
+      <div class="projects-grid" id="projectsGrid">
+        <!-- dynamic js will inject but also static fallback for consistency -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills & tools -->
+  <div class="container">
+    <div class="skills-section">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1rem;">Tech stack & tools</h2>
+      <div class="skills-flex" id="skillsList"></div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <div class="about-wrap">
+        <div class="about-text">
+          <h2 class="section-title" style="margin-bottom: 1rem;">About me</h2>
+          <p>Hi, I'm <span class="about-highlight">Njau Njenga</span>, an ICT student currently at Laikipia University and aspiring web technologist passionate about frontend development, UI design, and building meaningful digital experiences. I enjoy transforming ideas into clean, responsive, and interactive websites.</p>
+          <p>When I'm not coding, I spend time learning new technologies, improving my design skills, and working on my personal web development projects. I believe the web should be accessible, modern, and impactful.</p>
+          <p>✨ <strong>Open to internships, collaborations & exciting web projects.</strong></p>
+          <a href="#contact" class="btn btn-primary" style="margin-top: 0.8rem;">Work with me →</a>
+        </div>
+        <div style="flex: 0.8; text-align: center;">
+          <i class="fas fa-user-astronaut" style="font-size: 8rem; color: #c4b5fd;"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-card">
+        <div class="contact-info">
+          <h2 style="font-size: 1.8rem; margin-bottom: 1rem;">Let’s connect</h2>
+          <p>Got a project or just want to say hi? I’ll get back to you within 24h.</p>
+        <div class="contact-detail">
+  <i class="fas fa-envelope"></i>
+  <a href="mailto:njauishmael1@gmail.com" style="text-decoration: none; color: inherit;">njauishmael1@gmail.com</a>
+</div>
+
+<div class="contact-detail">
+  <i class="fab fa-github"></i>
+  <a href="https://github.com/jeyjeh-001" target="_blank" style="text-decoration: none; color: inherit;">github.com/jeyjeh-001</a>
+</div>
+
+<div class="contact-detail">
+  <i class="fab fa-linkedin"></i>
+  <a href="https://linkedin.com/in/YOUR-LINKEDIN-USERNAME" target="_blank" style="text-decoration: none; color: inherit;">LinkedIn Profile</a>
+</div>
+        </div>
+        <div class="contact-form">
+          <form id="contactForm">
+            <div class="input-group">
+              <input type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="input-group">
+              <input type="email" id="email" name="email" placeholder="Email address" required>
+            </div>
+            <div class="input-group">
+              <textarea rows="3" id="messageText" name="message" placeholder="Tell me about your idea..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" id="contactSubmitBtn">Send message →</button>
+            <p id="formFeedback" style="margin-top: 1rem; font-size: 0.85rem;"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Njau Njenga — Designed with <i class="fas fa-heart" style="color: #c084fc;"></i> & creative code</p>
+  </div>
+</footer>
+
+<script>
+  // PROJECTS DATA
+  const projectsData = [
+    {
+      title: "Personal Portfolio Website",
+      description: "A modern responsive portfolio website built to showcase my web development skills, projects, and contact information.",
+      tags: ["HTML", "CSS", "JavaScript"],
+      icon: "fas fa-user",
+      link: "index.html"
+    },
+    {
+      title: "Student Registration Form System",
+      description: "A responsive student registration form designed to collect and manage student records with browser storage.",
+      tags: ["HTML", "CSS", "JavaScript"],
+      icon: "fas fa-file-alt",
+      link: "student-registration-form.html"
+    },
+    {
+      title: "Simple Calculator App",
+      description: "A browser-based calculator built with JavaScript to perform basic arithmetic operations through an interactive interface.",
+      tags: ["HTML", "CSS", "JavaScript"],
+      icon: "fas fa-calculator",
+      link: "calculator-app.html"
+    }
+  ];
+
+  // SKILLS DATA
+  const skillsArray = [
+    { name: "HTML5", icon: "fab fa-html5" },
+    { name: "CSS3", icon: "fab fa-css3-alt" },
+    { name: "JavaScript", icon: "fab fa-js" },
+    { name: "C++", icon: "fas fa-code" },
+    { name: "C#", icon: "fas fa-laptop-code" },
+    { name: "Git & GitHub", icon: "fab fa-github" },
+    { name: "Responsive Design", icon: "fas fa-mobile-alt" },
+    { name: "VS Code", icon: "fas fa-terminal" }
+  ];
+
+  // RENDER PROJECTS
+  function renderProjects() {
+    const container = document.getElementById('projectsGrid');
+    if (!container) return;
+    container.innerHTML = '';
+
+    projectsData.forEach(proj => {
+      const card = document.createElement('div');
+      card.className = 'project-card';
+      card.innerHTML = `
+  <div class="project-img">
+    <i class="${proj.icon}" style="font-size: 3rem; color: #6d28d9;"></i>
+  </div>
+  <div class="project-info">
+    <h3>${proj.title}</h3>
+    <p style="color: #4b5563; font-size: 0.9rem;">${proj.description}</p>
+    <div class="project-tags">
+      ${proj.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+    </div>
+    <a href="${proj.link}" class="project-link">Case study <i class="fas fa-arrow-right"></i></a>
+  </div>
+`;
+      container.appendChild(card);
+    });
+  }
+
+  // RENDER SKILLS
+  function renderSkills() {
+    const skillsContainer = document.getElementById('skillsList');
+    if (!skillsContainer) return;
+    skillsContainer.innerHTML = '';
+
+    skillsArray.forEach(skill => {
+      const badge = document.createElement('div');
+      badge.className = 'skill-badge';
+      badge.innerHTML = `<i class="${skill.icon}"></i> ${skill.name}`;
+      skillsContainer.appendChild(badge);
+    });
+  }
+
+  // CONTACT FORM
+  const contactForm = document.getElementById('contactForm');
+  const feedback = document.getElementById('formFeedback');
+
+  // ⚠️ SETUP REQUIRED: Replace 'YOUR_FORMSPREE_ID' below with your real
+  // Formspree endpoint ID. Get one free at https://formspree.io :
+  //   1. Sign up / log in at formspree.io
+  //   2. Create a new form, it gives you a URL like https://formspree.io/f/abc1234
+  //   3. Copy the part after /f/ (e.g. "abc1234") and paste it in place of
+  //      YOUR_FORMSPREE_ID below.
+  // Until you do this, the form will show an error instead of sending.
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xaqgpdjb';
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const messageInput = document.getElementById('messageText');
+      const submitBtn = document.getElementById('contactSubmitBtn');
+
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      const message = messageInput.value.trim();
+
+      if (!name || !email || !message) {
+        feedback.textContent = '⚠️ Please fill in all fields.';
+        feedback.style.color = '#b91c1c';
+        return;
+      }
+
+      if (!email.includes('@')) {
+        feedback.textContent = '📧 Please enter a valid email address.';
+        feedback.style.color = '#b91c1c';
+        return;
+      }
+
+      if (FORMSPREE_ENDPOINT.includes('YOUR_FORMSPREE_ID')) {
+  feedback.textContent = '⚙️ Contact form is not set up yet — add a Formspree endpoint in the code.';
+  feedback.style.color = '#b91c1c';
+  return;
+}
+      const originalBtnText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      feedback.textContent = '';
+
+      try {
+        const response = await fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(contactForm)
+        });
+
+        if (response.ok) {
+          feedback.textContent = "✨ Thanks " + name + "! I'll reach out soon.";
+          feedback.style.color = '#2e7d32';
+          contactForm.reset();
+        } else {
+          feedback.textContent = '⚠️ Something went wrong sending your message. Please try again or email me directly.';
+          feedback.style.color = '#b91c1c';
+        }
+      } catch (err) {
+        feedback.textContent = '⚠️ Network error — please check your connection and try again.';
+        feedback.style.color = '#b91c1c';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+
+        setTimeout(() => {
+          feedback.textContent = '';
+        }, 5000);
+      }
+    });
+  }
+
+  // SMOOTH SCROLL
+  document.querySelectorAll('.nav-links a, .btn-primary[href^="#"], .btn-outline[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const hash = this.getAttribute('href');
+      if (hash && hash.startsWith('#') && hash !== '#') {
+        const targetElem = document.querySelector(hash);
+        if (targetElem) {
+          e.preventDefault();
+          targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.pushState(null, null, hash);
+        }
+      }
+    });
+  });
+
+  // PAGE LOAD
+  window.addEventListener('DOMContentLoaded', () => {
+    renderProjects();
+    renderSkills();
+
+    if (window.location.hash) {
+      const target = document.querySelector(window.location.hash);
+      if (target) {
+        setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), 100);
+      }
+    }
+  });
+</script>
+</body>
+</html>
